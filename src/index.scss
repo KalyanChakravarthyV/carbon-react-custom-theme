@@ -1,0 +1,82 @@
+// Full token list: https://github.com/carbon-design-system/carbon/blob/main/packages/themes/docs/sass.md#api
+
+@use '@carbon/react/scss/themes' as *;
+
+@use '@carbon/react/scss/theme' with (
+  $theme: (
+    // add a completely new token
+    custom-token: #7ce3ec,
+    // redefine existing tokens to new values
+    text-error: rgb(190, 107, 33),
+    // focus: rgb(233, 73, 198),
+    // background: #e2e2e2,
+    text-primary: #ffffff,
+    custom-token-01: #000000,
+    focus	: #4bf022,
+
+  )
+);
+
+
+// override a component token
+@use '@carbon/react/scss/components/button/tokens' as button-tokens with (
+  $button-primary: #3fb580,    $button-primary-hover: #3b3eee,
+
+
+);
+
+@use '@carbon/react';
+
+
+:root {
+  @include theme.theme($g100); //try g10 and g90
+}
+
+.color {
+  padding: 1rem;
+  margin: 1rem;
+  height: 3rem;
+  width: 20rem;
+}
+
+.background {
+  background: theme.$background;
+  border: 2px solid rgba(theme.get('custom-token'), 0.95);
+}
+
+.background-active {
+  background: theme.$background-active;
+}
+
+.background-inverse {
+  background: theme.$background-inverse;
+  color: theme.$focus;
+}
+
+.focus {
+  background: theme.$focus;
+}
+
+.interactive {
+  background: theme.$interactive;
+    // background: theme.;
+  // background: rgb(4, 157, 32);
+
+  color: white;
+}
+
+.text-error {
+  background: theme.$text-error;
+  color: white;
+  border-color: theme.$interactive;
+}
+
+.button-primary {
+  background: button-tokens.$button-primary;
+  color: white;
+}
+
+// You can access a custom variable via the theme.get() mixin
+.custom-token {
+  background: rgba(theme.get('custom-token'), 0.95);
+}
